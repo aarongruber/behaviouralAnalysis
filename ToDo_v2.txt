@@ -1,0 +1,69 @@
+To do
+
+%  Goal  %
+The goal is to have an analysis package that can be used by people with rudimentary Matlab skills or expert Matlab users to analyze neural/behavioural data including:
+Behaviour,  single units,  EEG, video, (maybe voltammetry?)
+Utimately, there will be a GUI for many of the common analyses (reaction time, % correct vs neural activity, ….)
+
+---- New object models ----
+units (tetrods #, depth, structure, quality grade, waveform, waveform stats, timestamps) * may need read this info from a spreadsheet in the same directory
+EEG (tet #, depth, struct, artifact times)
+video info (position, speed; processed to remove artifacts/gaps)
+
+
+----- Analyses ----
+Xcorr (units, EEG, unit-multiunit, units x behavioural metric; function to produce estimates of shuffled data)
+Multiple regression
+Reinforcement Learning analysis of behaviour – save in TR struct for correlation with ephys data 
+Replay?
+Spike-field coherence
+Coherence
+Cohereograms
+Partial directed coherence
+spectra
+Spectrograms
+Bispectra
+Stats on spectra
+
+--- future ---
+State vector decorrelation
+
+
+----- Plots --------
+Bar plot
+Methods to show stats & mean values on plot
+Method to add button on plot that pops up ANOVA and post-hoc tests
+Plot vector data (e.g. regression coefficients) 
+Matrix of coherence
+Matrix of partial directed coherence
+Baseline normalized group-averaged spectragrams
+Plot data (e.g firing rate) as a function of position
+make plot functs that take dataset arrays & group tags
+
+----  Stats  ----
+ANOVA: add repeated measures & test with SPSS or other package
+ANOVA: do post-hoc tests and display in a convenient way
+Test for sphericity
+---- Other suff ----
+Add Epoch times (rest 1, task, rest 2)
+Speed up the data parser function?
+Throw warning if rat_id data seems to be mislabelled (e.g. if there is only one instance of a rat ID)
+Make a function that computes over a session
+Make ‘trials’ based on video tracker (e.g. moving, walking, running, or boxA/boxB)
+Replace ‘registry’ at time of construction with a function that generates registry out of already loaded animals. 
+
+---  wish list ----     
+could have program dynamically add properties for each property of the object being read in. i.e. don't require hard coding in analysis program. This would require writing a function to ‘flatten’ structures so there is only one layer, and changing code using ‘params.*’
+'getTrials': use matlab style synax: such as ('Property', val) and (property = val), (property < val), (property ~= val), (property1 = val1 & property2 < val). *** should have optional switch '-session' for doing calc only within session.
+
+%% TO DO in behavioral program
+ % - add arduinoID (or com as lazy way to do it)
+ % - save files at BEHv1.mat
+ % - take out progressive delay in all progs except ones that say 'shaping'
+ % - remove delay & odor from matching pennies protocol.
+ % - use capital letters for field names
+ % - move params to top level
+ % - no empty entries - make them nan (either numeric or string 'nan'
+ % consistemt with type for property)
+ % - save probabilities of reward & odours
+ % *** rectify mismatch in param names: 'L_bolus_delay', vs 'R_reward_delay'
